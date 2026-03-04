@@ -79,7 +79,7 @@ if prompt := st.chat_input("Ask anything — weather, crypto, news..."):
 
 # ── Sidebar ───────────────────────────────────────────────────
 with st.sidebar:
-    st.header("🏗️ Architecture")
+    st.header("Architecture")
     st.markdown("""
 ```
     User Query

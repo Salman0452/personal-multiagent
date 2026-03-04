@@ -1,5 +1,7 @@
 # Multi-Agent AI System
 
+**Live App:** [https://personal-multiagent-yhuzy97thvszswkuy8kez3.streamlit.app/](https://personal-multiagent-yhuzy97thvszswkuy8kez3.streamlit.app/)
+
 A production-style multi-agent AI system built with LangChain and Groq.
 A Supervisor Agent intelligently routes queries to specialized agents.
 
