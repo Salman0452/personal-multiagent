@@ -60,6 +60,7 @@ if prompt := st.chat_input("Ask anything — weather, crypto, news..."):
             try:
                 response = st.session_state.agent.invoke({"input": prompt})
                 answer   = response["output"]
+                tracker.add_call(tokens=800)  # supervisor's own LLM call
             except Exception as e:
                 answer = f"System error: {str(e)}"
 

@@ -51,24 +51,36 @@ def build_supervisor() -> AgentExecutor:
     # ── Wrap each agent as a tool for supervisor ──────────────
     # This is the key pattern — agents become tools
 
+    def call_research(q: str) -> str:
+        tracker.add_call(tokens=600)
+        return research_agent.invoke({"input": q})["output"]
+
+    def call_finance(q: str) -> str:
+        tracker.add_call(tokens=600)
+        return finance_agent.invoke({"input": q})["output"]
+
+    def call_weather(q: str) -> str:
+        tracker.add_call(tokens=600)
+        return weather_agent.invoke({"input": q})["output"]
+
     tools = [
         Tool(
             name="research_agent",
-            func=lambda q: research_agent.invoke({"input": q})["output"],
+            func=call_research,
             description="""Use this for searching news, facts, people, 
             companies, AI topics, salaries, or any general knowledge 
             questions that need current internet information."""
         ),
         Tool(
             name="finance_agent",
-            func=lambda q: finance_agent.invoke({"input": q})["output"],
+            func=call_finance,
             description="""Use this for anything related to crypto prices,
             Bitcoin, Ethereum, financial calculations, or money math.
             Input should be the full financial question."""
         ),
         Tool(
             name="weather_agent",
-            func=lambda q: weather_agent.invoke({"input": q})["output"],
+            func=call_weather,
             description="""Use this for weather information for any city.
             Input should be the city name or weather question."""
         ),
